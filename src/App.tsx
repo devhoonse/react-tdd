@@ -1,9 +1,10 @@
 import React from 'react';
+import {Routes, Route} from "react-router-dom";
 import styled from "styled-components";
 
 import './App.css';
-import {PageHeader, Button} from "./components";
-import {List, Add} from "./pages";
+import {PageHeader} from "./components";
+import {List, Add, Detail, NotFound} from "./pages";
 
 
 const Container = styled.div`
@@ -19,7 +20,12 @@ function App() {
   return (
     <Container>
       <PageHeader />
-      <Add />
+      <Routes>
+        <Route path={"/"} element={<List />} />
+        <Route path={"/add"} element={<Add />} />
+        <Route path={"/detail/:id"} element={<Detail />} />
+        <Route path={"*"} element={<NotFound />} />
+      </Routes>
     </Container>
   );
 }
